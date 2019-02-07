@@ -4,6 +4,7 @@
  *  Created on: 31 ene 2019
  *      Author: jmichel
  */
+
 #define WIN32_LEAN_AND_MEAN
 #include "Window/CWindow.h"
 #include <commctrl.h>

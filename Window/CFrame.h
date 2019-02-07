@@ -6,7 +6,6 @@
 class CFrame
 {
 protected:
-    // VARIABLES
     HWND hWnd;
     RECT rect;
     HINSTANCE hInst;
@@ -14,6 +13,9 @@ protected:
     HDC hdc;
     MSG msg;
     unsigned long dwBaseUnits;
+    HFONT hMainFont;
+    float cx, cy;
+
 public:
     CFrame()
         :
@@ -23,7 +25,9 @@ public:
         wcx({0}),
         hdc(nullptr),
         msg({0}),
-		dwBaseUnits(GetDialogBaseUnits())
+		dwBaseUnits(GetDialogBaseUnits()),
+    	hMainFont(nullptr),
+		cx(0), cy(0)
     {
     }
     virtual ~CFrame()
@@ -37,6 +41,7 @@ public:
     int Run();
     BOOL ResizeWindow(int width_in, int height_in);
     RECT GetRect() const;
+    BOOL GetDlgUnits();
     bool Create(LPCTSTR lpTitle, DWORD dwStyle, DWORD dwExStyle = 0,
                 int x = CW_USEDEFAULT, int y = CW_USEDEFAULT,
                 int width = CW_USEDEFAULT, int height = CW_USEDEFAULT, HWND hWndParent = 0, HMENU hMenu = 0);
@@ -44,11 +49,11 @@ public:
     static LRESULT WINAPI WndProcFwd(HWND hWndProc, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 protected:
-    // FUNCIONES
     bool Register();
     BOOL SetFont(HWND hWndChild, LPARAM font);
     virtual LPCSTR ClassName() = 0;
     virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
+
 };
 
 

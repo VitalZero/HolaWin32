@@ -1,5 +1,5 @@
 #include "CFrame.h"
-#include <cassert>
+#include <assert.h>
 #include <windowsx.h>
 
 // FUNCIONES PUBLICAS
@@ -56,10 +56,30 @@ RECT CFrame::GetRect() const
 	return rect;
 }
 
+BOOL CFrame::GetDlgUnits()
+{
+	TEXTMETRIC tm;
+	hdc = GetWindowDC(hWnd);
+	assert(hdc != NULL);
+
+	hMainFont = HFONT(SelectObject(hdc, HFONT(GetStockObject(DEFAULT_GUI_FONT)) ) );
+	assert(hMainFont != NULL);
+
+	GetTextMetrics(hdc, &tm);
+	cx = float(LOWORD(GetDialogBaseUnits()) /4.0f);
+    cy = float((WORD)tm.tmHeight/8.0f);
+
+    SelectObject(hdc, hMainFont);
+
+    if(DeleteObject(hMainFont) && ReleaseDC(hWnd, hdc) )
+    	return TRUE;
+
+    return FALSE;
+}
+
 bool CFrame::Create(LPCTSTR lpTitle, DWORD dwStyle, DWORD dwExStyle,
                     int x, int y, int width, int height, HWND hWndParent, HMENU hMenu)
 {
-    //wcx.style = CS_DBLCLKS;
     wcx.cbSize = sizeof(WNDCLASSEX); 		// @suppress("Field cannot be resolved")
     wcx.lpfnWndProc =  CFrame::WndProc; 		// @suppress("Field cannot be resolved")
     wcx.hInstance = hInst; 						// @suppress("Field cannot be resolved")
@@ -85,9 +105,6 @@ bool CFrame::Create(LPCTSTR lpTitle, DWORD dwStyle, DWORD dwExStyle,
     	return false;
     }
 
-    GetWindowRect(hWnd, &rect);
-    //Show(SW_SHOW);
-
     return true;
 }
 
@@ -108,19 +125,7 @@ LRESULT WINAPI CFrame::WndProc(HWND hWndProc, UINT uMsg, WPARAM wParam, LPARAM l
 
         return pThis->HandleMessage(uMsg, wParam, lParam);
     }
-    /*else
-    {
-        pThis = (CFrame*) GetWindowLongPtr(hWndProc, GWLP_USERDATA);
-    }
 
-    if(pThis)
-    {
-        return pThis->HandleMessage(uMsg, wParam, lParam);
-    }
-    else
-    {
-        return DefWindowProc(hWndProc, uMsg, wParam, lParam);
-    }*/
     return DefWindowProc(hWndProc, uMsg, wParam, lParam);
 }
 
