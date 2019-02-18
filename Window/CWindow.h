@@ -2,7 +2,7 @@
 #define CWINDOW_H
 
 #include "CFrame.h"
-
+#include "../Controls/CListBox.h"
 
 #define IDC_DESGLOSE 1200
 
@@ -23,10 +23,11 @@ protected:
     HMODULE hLib;
 
 protected:
+    CListBox lbList;
     const char* ClassName() { return "SampleClass"; }
     void OnDestroy(HWND in_hWnd);
 	int OnPaint(HWND hWndP);
-	BOOL OnCreate(HWND in_hWnd, LPCREATESTRUCT);
+	BOOL OnCreate(HWND hWnd_in, LPCREATESTRUCT);
 	HBRUSH OnCtlColorStatic(HWND hWndP, HDC hdc, HWND hWndCtl, int color);
 	BOOL OnCommand(HWND hWndP, int id, HWND hWndCtl, UINT notifyCode);
 };

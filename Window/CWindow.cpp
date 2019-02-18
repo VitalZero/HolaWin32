@@ -1,7 +1,6 @@
 #include "CWindow.h"
 #include <windowsx.h>
-#include <iostream>
-#include <string>
+//#include <string>
 
 LRESULT CWindow::HandleMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -24,13 +23,10 @@ void CWindow::OnDestroy(HWND in_hWnd)
     PostQuitMessage(0);
 }
 
-BOOL CWindow::OnCreate(HWND in_hWnd, LPCREATESTRUCT)
+BOOL CWindow::OnCreate(HWND hWnd_in, LPCREATESTRUCT)
 {
     GetWindowRect(hWnd, &rect);
 
-    std::cout << GetDlgUnits() << std::endl;
-    std::cout << "X: " << cx << ", Y: " << cy << std::endl;
-	std::cout << "Valor hdc: " << CFrame::hdc << std::endl;
     return TRUE;
 }
 
