@@ -3,6 +3,7 @@
 
 #include "CFrame.h"
 #include "../Controls/CListBox.h"
+#include "../Controls/CLabel.h"
 
 #define IDC_DESGLOSE 1200
 

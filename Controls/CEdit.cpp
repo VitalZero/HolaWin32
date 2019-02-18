@@ -1,5 +1,5 @@
 #include "Cedit.h"
-#include <string>
+#include <cstdlib>
 
 // Edit Box
 int CEdit::GetInt()
@@ -16,7 +16,7 @@ int CEdit::GetInt()
 
         GetWindowText(hWnd, buffer, tempSize);
 
-        return atoi(buffer);
+        return std::atoi(buffer);
     }
 }
 
@@ -34,7 +34,7 @@ float CEdit::GetFloat()
 
         GetWindowText(hWnd, buffer, tempSize);
 
-        return float(atof(buffer));
+        return (float)std::atof(buffer);
     }
 }
 

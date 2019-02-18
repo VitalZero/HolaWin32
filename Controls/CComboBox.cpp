@@ -1,5 +1,5 @@
 #include "CComboBox.h"
-#include <string>
+#include <cstdlib>
 
 void CComboBox::Create(const HWND hWndParent, int x, int y, int w, int h,
             int id, LPCSTR txt)
