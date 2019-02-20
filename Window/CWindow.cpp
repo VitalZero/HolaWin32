@@ -6,11 +6,11 @@ LRESULT CWindow::HandleMessage(UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-        HANDLE_MSG(hWnd, WM_CREATE, OnCreate); // @suppress("Symbol is not resolved")
-        HANDLE_MSG(hWnd, WM_CTLCOLORSTATIC, OnCtlColorStatic);// @suppress("Symbol is not resolved")
-        HANDLE_MSG(hWnd, WM_COMMAND, OnCommand);// @suppress("Symbol is not resolved")
-        //HANDLE_MSG(hWnd, WM_PAINT, OnPaint);// @suppress("Symbol is not resolved")
-        HANDLE_MSG(hWnd, WM_DESTROY, OnDestroy);// @suppress("Symbol is not resolved")
+        HANDLE_MSG(hWnd, WM_CREATE, this->OnCreate);
+        HANDLE_MSG(hWnd, WM_CTLCOLORSTATIC, this->OnCtlColorStatic);
+        HANDLE_MSG(hWnd, WM_COMMAND, this->OnCommand);
+        HANDLE_MSG(hWnd, WM_PAINT, this->OnPaint);
+        HANDLE_MSG(hWnd, WM_DESTROY, this->OnDestroy);
     }
 
     return DefWindowProc(hWnd, message, wParam, lParam);
@@ -46,7 +46,7 @@ int CWindow::OnPaint(HWND hWndP)
 {
 	PAINTSTRUCT ps;
 	HDC hdc = BeginPaint(hWndP, &ps);
-	FillRect(hdc, &ps.rcPaint,HBRUSH(COLOR_WINDOW) );
+	//FillRect(hdc, &ps.rcPaint,HBRUSH(COLOR_WINDOW) );
 	EndPaint(hWndP, &ps);
 
 	return 0;

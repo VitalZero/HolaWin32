@@ -20,11 +20,11 @@ public:
     }
 	LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-protected:
+private:
     HMODULE hLib;
-
-protected:
     CListBox lbList;
+
+private:
     const char* ClassName() { return "SampleClass"; }
     void OnDestroy(HWND in_hWnd);
 	int OnPaint(HWND hWndP);

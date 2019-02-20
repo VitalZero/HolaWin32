@@ -10,7 +10,9 @@ public:
 	~CButton(){}
 	void Create(const HWND hWndParent, int x, int y, int w, int h,
 				int id, LPCTSTR txt = "");
-    HWND Window() const { return hWnd;}
+	using Controls::GetText;
+	using Controls::SetText;
+	using Controls::TextLength;
 protected:
 	bool defPush;
 };

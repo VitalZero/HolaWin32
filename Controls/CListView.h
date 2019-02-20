@@ -1,7 +1,7 @@
 #ifndef CLISTVIEW_H_INCLUDED
 #define CLISTVIEW_H_INCLUDED
+#define _WIN32_IE 0x0500
 #include "Controls.h"
-#define _WIN32_IE 0x0900
 #include <commctrl.h>
 
 class CListView : public Controls
