@@ -1,7 +1,7 @@
 #include "CFrame.h"
 #include <assert.h>
 #include <windowsx.h>
-
+#define MAINMENU_MENU 3
 // FUNCIONES PUBLICAS
 void CFrame::Show(int nCmdShow) const
 {
@@ -88,6 +88,7 @@ bool CFrame::Create(LPCTSTR lpTitle, DWORD dwStyle, DWORD dwExStyle,
     wcx.hCursor = LoadCursor(NULL, IDC_ARROW); 	// @suppress("Field cannot be resolved")
     wcx.hbrBackground = HBRUSH(COLOR_WINDOW); // @suppress("Field cannot be resolved")
     wcx.lpszClassName = ClassName(); 			// @suppress("Field cannot be resolved")
+    //wcx.lpszMenuName = "MAINMENU";
 
     if(!Register())
     {

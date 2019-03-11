@@ -1,7 +1,8 @@
 #ifndef CFRAME_H_INCLUDED
 #define CFRAME_H_INCLUDED
 
-#include <windows.h>
+#include "../VZWin.h"
+
 
 class CFrame
 {
@@ -30,6 +31,8 @@ public:
 		cx(0), cy(0)
     {
     }
+    CFrame(const CFrame&) = delete;
+    CFrame& operator=(const CFrame&) = delete;
     virtual ~CFrame()
     {
     }
@@ -53,7 +56,6 @@ protected:
     BOOL SetFont(HWND hWndChild, LPARAM font);
     virtual LPCSTR ClassName() = 0;
     virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
-
 };
 
 
